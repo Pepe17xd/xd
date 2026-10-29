@@ -8,8 +8,8 @@ html,body{width:100%;height:100%;margin:0}
 body{overflow:hidden;background:var(--night);color:var(--ivory);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 .backdrop{position:fixed;z-index:0;inset:0;overflow:hidden;background:radial-gradient(ellipse at 54% 44%,#192435 0,#101a29 45%,#070d16 100%);transition:background 2s ease}
 body[data-scene="2"] .backdrop{background:radial-gradient(ellipse at 58% 50%,#1b2633 0,#111923 48%,#080e17 100%)}
-body[data-scene="6"] .backdrop{background:radial-gradient(ellipse at 61% 45%,#1b2529 0,#111a21 46%,#080e17 100%)}
-body[data-scene="8"] .backdrop{background:#070c14}
+body[data-scene="7"] .backdrop{background:radial-gradient(ellipse at 61% 45%,#1b2529 0,#111a21 46%,#080e17 100%)}
+body[data-scene="9"] .backdrop{background:#070c14}
 .backdrop:after{content:"";position:absolute;inset:auto -15% -22%;height:42%;background:radial-gradient(ellipse,rgba(102,117,131,.12),transparent 65%);filter:blur(22px);animation:mist-drift 18s ease-in-out infinite alternate}
 .moon{position:absolute;right:15%;top:10%;width:clamp(72px,10vw,146px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 38% 33%,#eee6d4 0,#d7ceb9 47%,#b6ac9e 100%);opacity:.58;box-shadow:0 0 80px rgba(233,220,191,.13)}
 .moon:after{content:"";position:absolute;inset:-1px;border-radius:50%;background:radial-gradient(circle at 42% 38%,transparent 57%,rgba(8,14,23,.35) 70%)}
@@ -85,7 +85,7 @@ h1,h2,p{margin-top:0}
 .photo-credit{position:absolute;z-index:2;left:14px;bottom:12px;color:rgba(248,242,229,.7);font-size:8px;letter-spacing:.01em;text-shadow:0 1px 8px #111}
 .photo-caption{position:absolute;z-index:3;right:11%;bottom:18%;font:clamp(32px,4.8vw,58px)/1.14 var(--serif);text-shadow:0 3px 18px rgba(0,0,0,.4);animation:caption-reveal .9s .45s both}
 .photo-caption p{margin:0}.photo-caption em{color:var(--amber-light);font-weight:400}
-.photo-frame.image-error{display:none}.photo-scene.photo-unavailable .photo-caption,.photo-scene.photo-unavailable .funny-note{display:none}
+.photo-frame.image-error{display:none}.photo-scene.photo-unavailable .photo-caption,.photo-scene.photo-unavailable .funny-note,.photo-scene.photo-unavailable .beomgyu-caption{display:none}
 .funny-frame{left:auto;right:8%;width:64%;height:83%;top:7%}
 .funny-note{position:absolute;z-index:3;left:8%;bottom:18%;padding:20px 22px;background:rgba(12,19,29,.72);border-left:1px solid rgba(201,149,91,.72);backdrop-filter:blur(7px);transform:rotate(-2deg);animation:note-pop .8s .5s both}
 .funny-note .handwritten{font-size:20px;margin:0 0 3px;color:rgba(242,236,223,.74)}
@@ -101,10 +101,15 @@ h1,h2,p{margin-top:0}
 .flower-scene.active .stem-drawing path:first-child{animation:draw-stem 2.3s .2s ease-out forwards}
 .flower-scene.active .stem-center path:first-child{animation-delay:.5s}.flower-scene.active .stem-right path:first-child{animation-delay:.82s}
 .leaf-path{fill:rgba(138,155,135,.12);stroke:#8f9c8d;stroke-width:1.65;stroke-dasharray:220;stroke-dashoffset:220;opacity:0}
+.leaf-vein{fill:none;stroke:#70836f;stroke-width:1;stroke-linecap:round;stroke-dasharray:90;stroke-dashoffset:90;opacity:.75}
 .flower-scene.active .leaf-path{animation:draw-leaf 1.15s 1.45s ease-out forwards}
 .stem-center .leaf-path:nth-child(2){animation-delay:1.8s}.stem-right .leaf-path{animation-delay:2.15s}
+.flower-scene.active .leaf-vein{animation:draw-vein .9s 2.55s ease-out forwards}
+.flower-scene.active .stem-center .leaf-vein{animation-delay:2.9s}.flower-scene.active .stem-right .leaf-vein{animation-delay:3.25s}
 .petal-ring{transform:scale(.01);transform-box:fill-box;transform-origin:center}
-.ivory-petals ellipse{fill:url(#ivoryPetal);stroke:#d9d1c1;stroke-width:1.3}.cream-petals ellipse{fill:#f4ead7;stroke:#d7c7a9;stroke-width:1.2}.lavender-petals ellipse{fill:url(#lavenderPetal);stroke:#a797ad;stroke-width:1.2}
+.petal-shape{transform-box:fill-box;transform-origin:center}
+.ivory-petals .petal-shape{fill:url(#ivoryPetal);stroke:#d9d1c1;stroke-width:1.3}.cream-petals .petal-shape{fill:#f4ead7;stroke:#d7c7a9;stroke-width:1.2}.lavender-petals .petal-shape{fill:url(#lavenderPetal);stroke:#a797ad;stroke-width:1.2}
+.petal-ring .petal-shape:nth-child(2n){fill:#eee6d7}.lavender-petals .petal-shape:nth-child(odd){fill:#84748c}
 .flower-center{fill:#c9955b;stroke:#f2d5a2;stroke-width:1}.center-light{fill:#fff0cf}
 .flower-scene.active .blossom-left .petal-ring{animation:petal-open .9s 2.7s cubic-bezier(.18,.8,.25,1) forwards}
 .flower-scene.active .blossom-center .petal-ring{animation:petal-open .95s 3.3s cubic-bezier(.18,.8,.25,1) forwards}
@@ -152,6 +157,7 @@ button:focus-visible{outline:2px solid var(--amber-light);outline-offset:3px}
 @keyframes note-pop{from{opacity:0;transform:translateY(9px) rotate(-2deg)}to{opacity:1;transform:translateY(0) rotate(-2deg)}}
 @keyframes draw-stem{to{stroke-dashoffset:0}}
 @keyframes draw-leaf{from{stroke-dashoffset:220;opacity:0}to{stroke-dashoffset:0;opacity:1}}
+@keyframes draw-vein{from{stroke-dashoffset:90;opacity:.35}to{stroke-dashoffset:0;opacity:.78}}
 @keyframes petal-open{from{transform:scale(.01)}to{transform:scale(1)}}
 @keyframes center-bloom{to{opacity:1;transform:scale(1)}}
 @keyframes draw-tie{to{stroke-dashoffset:0}}
@@ -175,4 +181,304 @@ button:focus-visible{outline:2px solid var(--amber-light);outline-offset:3px}
   .drawn-heart path{stroke-dashoffset:0}.scene{filter:none}.ending h2,.ending-moon{opacity:1;transform:none}
   .petal-ring{transform:scale(1)}.flower-center,.center-light{opacity:1;transform:scale(1)}.stem-drawing path:first-child,.leaf-path,.bouquet-tie{stroke-dashoffset:0;opacity:1}
   .flame-shape,.flame-core{animation:none}
+}
+
+/* Pequeños personajes del cuento: cada ilustración vive dentro de su escena. */
+.character-anchor{position:absolute;z-index:5;pointer-events:none}
+.frankenstein-anchor{width:clamp(76px,10vw,136px);opacity:0}
+.frankenstein-art{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 5px 3px rgba(0,0,0,.24))}
+.franken-body{transform-box:view-box;transform-origin:80px 176px}
+.franken-leg,.arm-left,.arm-right{transform-box:view-box}
+.leg-left{transform-origin:62px 173px}.leg-right{transform-origin:96px 173px}
+.arm-left{transform-origin:50px 112px}.arm-right{transform-origin:111px 112px}
+.head{fill:#91a786;stroke:#334139;stroke-width:3.2;stroke-linejoin:round}
+.head:after{content:""}
+.hair{fill:#322f35;stroke:#29282e;stroke-width:2.2;stroke-linejoin:round}
+.stitch-scar,.neck-stitch{fill:none;stroke:#53654f;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.neck{fill:#829879;stroke:#34433b;stroke-width:2.5}
+.bolt{fill:none;stroke:#83735e;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.bolt-cap{fill:#c0a779;stroke:#544c43;stroke-width:2}
+.body-coat{fill:#303741;stroke:#191f28;stroke-width:3;stroke-linejoin:round}
+.shirt{fill:#d4c7a9;stroke:#615c51;stroke-width:1.5;stroke-linejoin:round}
+.lapel{fill:#46504d;stroke:#252c31;stroke-width:1.5;stroke-linejoin:round}
+.seam{stroke:#7c8277;stroke-width:1;stroke-dasharray:2 3;opacity:.76}
+.coat-button{fill:#c39b63;stroke:#5c4d3a;stroke-width:1}
+.trouser{fill:none;stroke:#252b34;stroke-width:12;stroke-linecap:round}
+.shoe{fill:#544842;stroke:#252329;stroke-width:2;stroke-linejoin:round}
+.sleeve{fill:none;stroke:#353c43;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+.hand{fill:#92a886;stroke:#37443d;stroke-width:2.4;stroke-linejoin:round}
+.eye-white{fill:#f3ead9;stroke:#3d4940;stroke-width:1.4}
+.pupil{fill:#29322c}.brow{fill:none;stroke:#3d453a;stroke-width:3.3;stroke-linecap:round}
+.nose{fill:none;stroke:#65765f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mouth,.mouth-stitches{fill:none;stroke:#414d3d;stroke-width:2.3;stroke-linecap:round}
+.face-confused,.face-laugh,.face-jealous{opacity:0}
+.oh-mouth{fill:#51463f;stroke:#303a32;stroke-width:1.2}
+.laugh-eye,.laugh-mouth{fill:#39443a;stroke:#39443a;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.cheek{fill:none;stroke:#ad816e;stroke-width:2.4;stroke-linecap:round;opacity:.75}
+.held-flower{opacity:0;fill:#eee4cf;stroke:#71816c;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.held-flower>path:first-child{fill:none;stroke:#71816c;stroke-width:2}
+.held-petals ellipse{fill:#e7dfd2}.held-petals circle{fill:#c9955b}
+.speech-bubble,.cake-bubble,.txt-bubble{position:absolute;right:-124px;bottom:76%;width:max-content;max-width:min(190px,42vw);padding:8px 11px;border:1px solid rgba(210,193,160,.55);border-radius:13px 13px 13px 3px;background:#efe8da;color:#293244;font:14px/1.2 var(--hand);white-space:normal;box-shadow:0 5px 18px rgba(0,0,0,.2);opacity:0;visibility:hidden;transform:translateY(5px) scale(.96);z-index:8}
+.speech-bubble:after,.cake-bubble:after,.txt-bubble:after{content:"";position:absolute;left:9px;bottom:-6px;width:10px;height:10px;background:#efe8da;border-left:1px solid rgba(210,193,160,.55);border-bottom:1px solid rgba(210,193,160,.55);transform:skew(-20deg) rotate(-45deg)}
+.spider-spot{width:38px;height:0}
+.spider-thread{position:absolute;left:50%;top:0;width:1px;height:0;background:linear-gradient(rgba(231,225,210,.1),rgba(235,228,211,.72));transform:translateX(-50%);transform-origin:top}
+.spider-art{position:absolute;left:50%;top:-27px;width:34px;height:auto;overflow:visible;opacity:0;transform:translateX(-50%) translateY(-54px);filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.spider-legs{transform-box:fill-box;transform-origin:center}
+.spider-leg{fill:none;stroke:#2d2c36;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transform-origin:center}
+.spider-abdomen{fill:#544958;stroke:#2d2933;stroke-width:2.5}
+.abdomen-mark{fill:none;stroke:#ae9caf;stroke-width:2;stroke-linecap:round;opacity:.8}
+.spider-head{fill:#675a68;stroke:#2d2933;stroke-width:2.2}
+.spider-eye{fill:#f5e9d2}.spider-glint{fill:#fff}.spider-smile{fill:none;stroke:#302c35;stroke-width:1.7;stroke-linecap:round}
+.spider-cheek{fill:#b48b8a;opacity:.85}
+.intro-spider{right:28%;top:0}
+.opening.active .intro-spider .spider-thread{animation:cord-unspool 6s .55s both}
+  .opening.active .intro-spider .spider-art{animation:intro-spider 6s .55s ease-in-out both}
+.cake-buddy{right:-14vw;bottom:4%;width:clamp(65px,7.4vw,100px);z-index:6}
+.cake-bubble{right:88px;bottom:78%;font-size:13px}
+.cake-scene.active .cake-buddy{animation:cake-buddy-arrive 1.55s .5s cubic-bezier(.22,.68,.2,1) both}
+.cake-scene.active .cake-buddy .frankenstein-art{animation:walk-bounce .42s .5s 4 ease-in-out both}
+.cake-scene.active .cake-buddy .leg-left{animation:leg-step .4s .5s 4 alternate both}
+.cake-scene.active .cake-buddy .leg-right{animation:leg-step .4s .7s 4 alternate both}
+.cake-scene.active .cake-buddy .arm-left{animation:arm-step .42s .5s 4 alternate both}
+.cake-scene.active .cake-bubble{animation:speech-pop 2.55s 1.8s both}
+.cake-scene.active .cake-buddy .face-neutral{animation:face-away .25s 1.55s both}
+.cake-scene.active .cake-buddy .face-confused{animation:face-show .3s 1.55s both}
+.cake-scene.active:not(.candles-blown) .cake-buddy .arm-left{animation:cake-swat .68s 3.35s both}
+.cake-scene.active .cake-buddy .franken-body{animation:frank-look-up .45s 4.45s forwards}
+.cake-scene.candles-blown .cake-buddy .face-confused{animation:face-away .2s both}
+.cake-scene.candles-blown .cake-buddy .face-laugh{animation:face-show .25s .12s both}
+.cake-scene.candles-blown .cake-buddy .franken-body{animation:frank-cheer .65s .12s 2 ease-in-out}
+.cake-stage .cake-spider{left:83%;top:6%;z-index:5}
+.cake-scene.active .cake-spider .spider-thread{animation:cord-cake 3.1s 1.35s both}
+.cake-scene.active .cake-spider .spider-art{animation:spider-cake 3.1s 1.35s ease-in-out both}
+.bts-buddy{right:-16vw;bottom:11%;width:clamp(78px,9.5vw,130px);z-index:7}
+.bts-buddy .speech-bubble{right:-124px;bottom:79%;max-width:172px}
+.bts-scene.active .bts-buddy{animation:bts-visit 9s .45s cubic-bezier(.24,.68,.22,1) both}
+.bts-scene.active .bts-buddy .frankenstein-art{animation:walk-bounce .43s .5s 5 ease-in-out both}
+.bts-scene.active .bts-buddy .leg-left{animation:leg-step .43s .5s 5 alternate both}
+.bts-scene.active .bts-buddy .leg-right{animation:leg-step .43s .715s 5 alternate both}
+.bts-scene.active .bts-buddy .arm-left{animation:arm-step .43s .5s 5 alternate both}
+.bts-scene.active .bts-buddy .face-neutral{animation:face-away .25s 2.8s both}
+.bts-scene.active .bts-buddy .face-confused{animation:face-show .3s 2.8s both}
+.bts-scene.active .bts-buddy .bubble-who{animation:speech-pop 2.25s 2.55s both}
+.bts-scene.active .bts-buddy .bubble-me{animation:speech-pop 2.25s 5.15s both}
+.bts-frame .bts-spider{top:0;right:3.5%;z-index:5}
+.bts-scene.active .bts-spider .spider-thread{animation:cord-bts 6.7s 1.1s both}
+.bts-scene.active .bts-spider .spider-art{animation:spider-bts 6.7s 1.1s ease-in-out both}
+.bts-scene .photo-caption{left:11%;right:auto;bottom:14%}
+.funny-buddy{right:3.5%;bottom:3%;width:clamp(80px,9vw,124px);z-index:6;transform:translateY(75%)}
+.funny-scene.active .funny-buddy{animation:peek-in 1.05s .9s cubic-bezier(.18,.78,.25,1) both}
+.funny-scene.active .funny-buddy .frankenstein-art{animation:small-giggle .42s 2s 3 ease-in-out}
+.funny-scene.active .funny-buddy .face-neutral{animation:face-away .2s 1.8s both}
+.funny-scene.active .funny-buddy .face-laugh{animation:face-show .25s 1.8s both}
+.funny-scene.active .funny-buddy .arm-left{animation:point-at-joke .55s 1.55s 2 alternate ease-in-out}
+.funny-spider{left:41%;top:43%;z-index:4}
+.funny-scene.active .funny-spider .spider-thread{animation:cord-funny 6.3s 1.2s both}
+.funny-scene.active .funny-spider .spider-art{animation:spider-funny 6.3s 1.2s ease-in-out both}
+.txt-buddy{right:-14vw;bottom:5%;width:clamp(78px,9vw,122px);z-index:6}
+.txt-scene.active .txt-buddy{animation:txt-buddy-visit 6.7s .45s ease-in-out both}
+.txt-scene.active .txt-buddy .frankenstein-art{animation:walk-bounce .42s .5s 4 ease-in-out both}
+.txt-scene.active .txt-buddy .leg-left{animation:leg-step .42s .5s 4 alternate both}
+.txt-scene.active .txt-buddy .leg-right{animation:leg-step .42s .71s 4 alternate both}
+.txt-scene.active .txt-buddy .face-neutral{animation:face-away .25s 1.7s both}
+.txt-scene.active .txt-buddy .face-confused{animation:face-show .3s 1.7s both}
+.txt-scene.active .txt-bubble{animation:speech-pop 2.4s 1.85s both}
+.txt-spider{right:25%;top:8%;z-index:4}
+.txt-scene.active .txt-spider .spider-thread{animation:cord-txt 5.7s 1.5s both}
+.txt-scene.active .txt-spider .spider-art{animation:spider-txt 5.7s 1.5s ease-in-out both}
+.flower-buddy{right:-12vw;bottom:3%;width:clamp(60px,7.4vw,102px);z-index:4}
+.flower-buddy .held-flower{opacity:1}
+.flower-scene.active .flower-buddy{animation:flower-buddy-trip 3.9s 6.35s cubic-bezier(.2,.65,.25,1) both}
+.flower-scene.active .flower-buddy .frankenstein-art{animation:flower-stumble .8s 7.6s ease-in-out both}
+.flower-scene.active .flower-buddy .leg-left{animation:leg-step .42s 6.4s 3 alternate both}
+.flower-scene.active .flower-buddy .leg-right{animation:leg-step .42s 6.61s 3 alternate both}
+.flower-offering{position:absolute;right:18%;bottom:8%;width:34px;height:60px;fill:#efe6d3;stroke:#82927a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:rotate(-9deg);z-index:3}
+.flower-scene.active .flower-offering{animation:offering-place 1.25s 8.65s both}
+.flower-spider{left:77%;top:70%;z-index:4}
+.flower-scene.active .flower-spider .spider-thread{animation:cord-flower 2.3s 8.7s both}
+.flower-scene.active .flower-spider .spider-art{animation:spider-flower 2.3s 8.7s ease-in-out both}
+.scene.active .spider-leg{animation:spider-tap .48s ease-in-out infinite alternate}
+
+@keyframes cord-unspool{0%{height:0}20%{height:112px}68%{height:112px}100%{height:0}}
+@keyframes intro-spider{0%{opacity:0;transform:translateX(-50%) translateY(-45px)}18%{opacity:1;transform:translateX(-50%) translateY(112px)}38%{transform:translateX(-50%) translateY(106px) rotate(-6deg)}50%{transform:translateX(-50%) translateY(112px) rotate(5deg)}68%{opacity:1;transform:translateX(-50%) translateY(108px) rotate(-2deg)}85%{opacity:1;transform:translateX(-50%) translateY(20px)}100%{opacity:0;transform:translateX(-50%) translateY(-45px)}}
+@keyframes cord-cake{0%,100%{height:0}25%,68%{height:64px}}
+@keyframes spider-cake{0%,100%{opacity:0;transform:translateX(-50%) translateY(-45px)}25%{opacity:1;transform:translateX(-50%) translateY(62px)}48%{transform:translateX(-50%) translateY(58px) rotate(-8deg)}62%{transform:translateX(-50%) translateY(62px) rotate(8deg)}80%{opacity:1;transform:translateX(-50%) translateY(10px)}100%{opacity:0}}
+@keyframes cord-bts{0%,100%{height:0}18%,65%{height:92px}}
+@keyframes spider-bts{0%,100%{opacity:0;transform:translateX(-50%) translateY(-35px)}18%{opacity:1;transform:translateX(-50%) translateY(89px)}35%{transform:translateX(-50%) translateY(84px) rotate(5deg)}56%{opacity:1;transform:translateX(-50%) translateY(90px) rotate(-3deg)}76%{opacity:1;transform:translateX(-50%) translateY(5px)}100%{opacity:0;transform:translateX(-50%) translateY(-35px)}}
+@keyframes cord-funny{0%,100%{height:0}18%,68%{height:76px}}
+@keyframes spider-funny{0%,100%{opacity:0;transform:translateX(-50%) translateY(-38px)}18%{opacity:1;transform:translateX(-50%) translateY(72px)}37%{transform:translateX(-50%) translateY(67px) rotate(-7deg)}57%{opacity:1;transform:translateX(-50%) translateY(72px) rotate(5deg)}80%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0}}
+@keyframes cord-txt{0%,100%{height:0}22%,68%{height:62px}}
+@keyframes spider-txt{0%,100%{opacity:0;transform:translateX(-50%) translateY(-35px)}22%{opacity:1;transform:translateX(-50%) translateY(59px)}45%{transform:translateX(calc(-50% - 22px)) translateY(62px)}65%{opacity:1;transform:translateX(calc(-50% + 28px)) translateY(58px)}82%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0}}
+@keyframes cord-flower{0%,100%{height:0}28%,67%{height:45px}}
+@keyframes spider-flower{0%,100%{opacity:0;transform:translateX(-50%) translateY(-40px)}28%{opacity:1;transform:translateX(-50%) translateY(42px)}45%{transform:translateX(-50%) translateY(37px) rotate(-7deg)}62%{opacity:1;transform:translateX(-50%) translateY(42px) rotate(5deg)}82%{opacity:1;transform:translateX(-50%) translateY(-18px)}100%{opacity:0}}
+@keyframes spider-tap{from{transform:rotate(-3deg)}to{transform:rotate(4deg)}}
+@keyframes cake-buddy-arrive{0%{right:-14vw;opacity:0}15%{opacity:1}100%{right:5vw;opacity:1}}
+@keyframes bts-visit{0%{right:-16vw;opacity:0}8%{opacity:1}24%{right:12vw;opacity:1}50%{right:12vw;opacity:1}58%{right:17vw;opacity:1}78%{right:17vw;opacity:1}94%{right:-16vw;opacity:0}100%{right:-16vw;opacity:0}}
+@keyframes txt-buddy-visit{0%{right:-14vw;opacity:0}12%{opacity:1}25%{right:5vw;opacity:1}67%{right:5vw;opacity:1}83%{right:-14vw;opacity:0}100%{right:-14vw;opacity:0}}
+@keyframes flower-buddy-trip{0%{right:-12vw;opacity:0}12%{opacity:1}37%{right:12vw;opacity:1}53%{right:12vw;opacity:1}61%{right:10vw;opacity:1}82%{right:10vw;opacity:1}100%{right:-12vw;opacity:0}}
+@keyframes walk-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes leg-step{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(13deg)}}
+@keyframes arm-step{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(17deg)}}
+@keyframes cake-swat{0%,100%{transform:rotate(-5deg)}25%{transform:rotate(-76deg)}55%{transform:rotate(18deg)}78%{transform:rotate(-32deg)}}
+@keyframes frank-look-up{to{transform:translateY(-3px) rotate(-2deg)}}
+@keyframes frank-cheer{0%,100%{transform:rotate(0)}30%{transform:rotate(-5deg) translateY(-4px)}65%{transform:rotate(5deg) translateY(-2px)}}
+@keyframes peek-in{0%{opacity:0;transform:translateY(75%)}100%{opacity:1;transform:translateY(0)}}
+@keyframes small-giggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-3deg) translateY(-2px)}65%{transform:rotate(3deg) translateY(-1px)}}
+@keyframes point-at-joke{from{transform:rotate(-10deg)}to{transform:rotate(-54deg)}}
+@keyframes flower-stumble{0%,100%{transform:rotate(0)}26%{transform:rotate(11deg) translateY(3px)}53%{transform:rotate(-9deg) translateY(-2px)}78%{transform:rotate(4deg)}}
+@keyframes offering-place{0%{opacity:0;transform:translateY(-12px) rotate(-25deg)}35%{opacity:1;transform:translateY(0) rotate(8deg)}65%,100%{opacity:1;transform:translateY(0) rotate(-9deg)}}
+@keyframes speech-pop{0%{opacity:0;visibility:hidden;transform:translateY(7px) scale(.94)}8%{visibility:visible;opacity:1;transform:translateY(0) scale(1)}76%{visibility:visible;opacity:1;transform:translateY(0) scale(1)}100%{visibility:hidden;opacity:0;transform:translateY(-3px) scale(.97)}}
+@keyframes face-away{to{opacity:0}}
+@keyframes face-show{to{opacity:1}}
+
+@media(max-width:760px){
+  .intro-spider{right:22%}
+  .frankenstein-anchor{width:clamp(70px,21vw,94px)}
+  .cake-buddy{right:-22vw;width:20vw;bottom:4%}
+  .cake-bubble{right:66px;bottom:79%;font-size:12px}
+  @keyframes cake-buddy-arrive{0%{right:-22vw;opacity:0}15%{opacity:1}100%{right:7vw;opacity:1}}
+  .bts-buddy{right:-22vw;bottom:0;width:18vw}
+  .bts-buddy .speech-bubble{right:0;max-width:42vw;font-size:12px}
+  @keyframes bts-visit{0%{right:-22vw;opacity:0}8%{opacity:1}24%{right:8vw;opacity:1}50%{right:8vw;opacity:1}58%{right:11vw;opacity:1}78%{right:11vw;opacity:1}94%{right:-22vw;opacity:0}100%{right:-22vw;opacity:0}}
+  .funny-buddy{right:3%;bottom:2%;width:21vw}
+  .funny-spider{left:39%;top:44%}
+  .txt-buddy{right:-20vw;bottom:0;width:18vw}
+  @keyframes txt-buddy-visit{0%{right:-20vw;opacity:0}12%{opacity:1}25%{right:7vw;opacity:1}67%{right:7vw;opacity:1}83%{right:-20vw;opacity:0}100%{right:-20vw;opacity:0}}
+  .txt-bubble{right:0;max-width:42vw;font-size:12px}
+  .txt-spider{right:23%;top:8%}
+  .flower-buddy{right:-20vw;bottom:3%;width:16vw}
+  @keyframes flower-buddy-trip{0%{right:-20vw;opacity:0}12%{opacity:1}37%{right:9vw;opacity:1}53%{right:9vw;opacity:1}61%{right:7vw;opacity:1}82%{right:7vw;opacity:1}100%{right:-20vw;opacity:0}}
+  .flower-offering{right:18%;bottom:7%;width:27px;height:48px}
+  .flower-spider{left:77%;top:70%}
+}
+@media(prefers-reduced-motion:reduce){
+  .character-anchor{animation:none!important}
+  .frankenstein-art,.spider-art,.spider-thread,.speech-bubble,.cake-bubble,.txt-bubble,.flower-offering{animation:none!important;transition:none!important}
+  .frankenstein-art *,.scene.active .spider-leg{animation:none!important}
+  .frankenstein-anchor,.frankenstein-art,.spider-art,.flower-offering{opacity:1;transform:none}
+  .spider-thread{height:62px}.leaf-vein{stroke-dashoffset:0;opacity:.78}.face-confused,.face-laugh{opacity:0}
+  .cake-buddy{right:5vw;opacity:1}.bts-buddy{right:12vw;opacity:1}.funny-buddy{right:3.5%;bottom:3%;opacity:1;transform:none}
+  .txt-buddy{right:5vw;opacity:1}.flower-buddy{right:10vw;opacity:1}
+}
+
+/* Cameos de Beomgyu y del lobito: pequeños, limitados a su propia escena. */
+.beomgyu-scene .photo-frame{left:9%;top:8%;width:66%;height:82%}
+.beomgyu-frame img{object-position:center 36%}
+.beomgyu-scene.active .photo-frame.image-loaded img{animation:ken-burns 8.8s ease-out both}
+.beomgyu-caption{position:absolute;z-index:4;right:6%;bottom:25%;width:min(25vw,330px);opacity:0;transform:translateY(9px);filter:blur(2px)}
+.beomgyu-scene.active .beomgyu-caption{animation:beomgyu-copy 1s .7s forwards}
+.beomgyu-caption p{margin:0 0 11px;font:clamp(21px,2.4vw,32px)/1.25 var(--serif);color:#e9e1d2;opacity:0;transform:translateY(6px)}
+.beomgyu-caption strong{display:inline-block;font:500 clamp(17px,1.8vw,24px)/1 var(--sans);letter-spacing:.13em;color:var(--amber-light);opacity:0;transform:translateY(6px)}
+.beomgyu-scene.active .beomgyu-caption p{animation:beomgyu-copy  .8s 1.25s forwards}
+.beomgyu-scene.active .beomgyu-caption strong{animation:beomgyu-copy .8s 2.55s forwards}
+.beomgyu-frame .photo-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.beomgyu-buddy{right:-14vw;bottom:3%;width:clamp(70px,8.2vw,112px);z-index:6}
+.beomgyu-scene.active .beomgyu-buddy{animation:beomgyu-jealous-walk 8.25s .5s ease-in-out both}
+.beomgyu-scene.active .beomgyu-buddy .frankenstein-art{animation:walk-bounce .46s .5s 4 ease-in-out both}
+.beomgyu-scene.active .beomgyu-buddy .leg-left{animation:leg-step .45s .5s 4 alternate both}
+.beomgyu-scene.active .beomgyu-buddy .leg-right{animation:leg-step .45s .72s 4 alternate both}
+.beomgyu-scene.active .beomgyu-buddy .face-neutral{animation:face-away .18s 2.25s both}
+.beomgyu-scene.active .beomgyu-buddy .face-jealous{animation:face-show .28s 2.25s both}
+.beomgyu-scene.active .beomgyu-buddy .face-jealous .pupil{animation:frank-glance 1.1s 2.3s both}
+.beomgyu-scene.active .beomgyu-bubble{animation:speech-pop 2s 2.5s both}
+.beomgyu-scene.active .beomgyu-buddy .arm-left{animation:jealous-fold-left .55s 4.65s forwards}
+.beomgyu-scene.active .beomgyu-buddy .arm-right{animation:jealous-fold-right .55s 4.65s forwards}
+
+.wolf-anchor{width:clamp(75px,8.5vw,116px);opacity:0;z-index:6}
+.wolf-art{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 5px 4px rgba(0,0,0,.25))}
+.wolf-body{transform-box:view-box;transform-origin:85px 179px}
+.wolf-head{fill:#756555;stroke:#292934;stroke-width:3;stroke-linejoin:round}
+.wolf-ear-inner{fill:none;stroke:#c4ad91;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.wolf-ruff{fill:#887865;stroke:#292934;stroke-width:2.5;stroke-linejoin:round}
+.wolf-muzzle{fill:#e8ddc8;stroke:#423c3c;stroke-width:2}
+.wolf-brow{fill:none;stroke:#342f32;stroke-width:3;stroke-linecap:round}
+.wolf-eye{fill:#f2ecdf;stroke:#352e30;stroke-width:1.5}.wolf-pupil{fill:#1e2330}.wolf-glint{fill:#fffaf1}
+.wolf-nose{fill:#272831;stroke:#312b2f;stroke-width:1.5;stroke-linejoin:round}.wolf-smile{fill:none;stroke:#4a3c3d;stroke-width:2;stroke-linecap:round}.wolf-fang{fill:#f3ead9;stroke:#5b5149;stroke-width:1}
+.wolf-coat{fill:#323746;stroke:#252733;stroke-width:3;stroke-linejoin:round}.wolf-scarf{fill:#9c7859;stroke:#443a36;stroke-width:1.5;stroke-linejoin:round}
+.wolf-leg>path:first-child,.wolf-arm>path:first-child{fill:none;stroke:#665748;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+.wolf-paw{fill:#756555;stroke:#332f33;stroke-width:2;stroke-linejoin:round}
+.wolf-leg-a,.wolf-leg-b,.wolf-arm-a,.wolf-arm-b{transform-box:view-box}
+.wolf-leg-a{transform-origin:69px 165px}.wolf-leg-b{transform-origin:103px 165px}.wolf-arm-a{transform-origin:53px 112px}.wolf-arm-b{transform-origin:119px 113px}
+.wolf-tail{transform-box:view-box;transform-origin:116px 159px;fill:none;stroke:#756555;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.tail-tip{fill:#a18a6b;stroke:#332f33;stroke-width:2;stroke-linejoin:round}
+.wolf-bag>path:first-child{fill:#81715d;stroke:#3b3535;stroke-width:2}.bag-strap,.bag-tie{fill:none;stroke:#b49a72;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.pumpkin-patch{fill:#c68149;stroke:#553c36;stroke-width:1.6}.pumpkin-ridge{fill:none;stroke:#75483a;stroke-width:1.3;stroke-linecap:round}.bag-tie{stroke-width:2}
+.wolf-candy-trail{position:absolute;left:58%;bottom:17%;width:84px;height:38px;z-index:7}
+.candy{position:absolute;bottom:1px;width:14px;height:9px;border-radius:4px;background:#d4ae6c;box-shadow:inset 0 -2px 0 rgba(67,47,42,.22),0 2px 3px rgba(0,0,0,.2);opacity:0;transform:translateY(-20px) rotate(0)}
+.candy:before,.candy:after{content:"";position:absolute;top:2px;width:5px;height:5px;background:inherit;clip-path:polygon(100% 0,100% 100%,0 50%)}
+.candy:before{left:-4px}.candy:after{right:-4px;transform:scaleX(-1)}
+.candy-a{left:8px;background:#d28a72}.candy-b{left:33px;bottom:5px;background:#a7aa83}.candy-c{left:57px;background:#bea7bd}
+.intro-wolf{right:-12vw;bottom:3%;width:clamp(72px,8vw,108px)}
+.opening.active .intro-wolf{animation:wolf-intro 5.3s .3s cubic-bezier(.22,.66,.2,1) both}
+.opening.active .intro-wolf .wolf-art{animation:walk-bounce .48s .45s 5 ease-in-out both}
+.opening.active .intro-wolf .wolf-leg-a{animation:leg-step .46s .45s 5 alternate both}.opening.active .intro-wolf .wolf-leg-b{animation:leg-step .46s .68s 5 alternate both}
+.opening.active .intro-wolf .wolf-arm-a,.opening.active .intro-wolf .wolf-arm-b{animation:arm-step .48s .45s 5 alternate both}
+.opening.active .intro-wolf .wolf-tail{animation:wolf-tail-wag .7s .5s 6 ease-in-out both}
+.opening.active .intro-wolf .candy{animation:candy-drop 1.15s 1.85s ease-out both}.opening.active .intro-wolf .candy-b{animation-delay:2.08s}.opening.active .intro-wolf .candy-c{animation-delay:2.3s}
+.wolf-phrase{position:absolute;z-index:7;width:max-content;max-width:46vw;color:var(--amber-light);font:clamp(17px,2vw,23px)/1.1 var(--hand);opacity:0;text-shadow:0 2px 8px #080c13}
+.intro-wolf-phrase{right:calc(7vw + 116px);bottom:16%}
+.opening.active .intro-wolf-phrase{animation:speech-pop 2.6s 1.15s both}
+
+.cake-wolf{left:-14vw;bottom:3%;width:clamp(73px,7.3vw,100px)}
+.cake-scene.active .cake-wolf{animation:cake-wolf-visit 7.2s 1.55s ease-in-out both}
+.cake-scene.active .cake-buddy{animation:cake-frank-candy 9s .45s ease-in-out both}
+.cake-scene.active .cake-wolf .wolf-art{animation:walk-bounce .46s 1.7s 5 ease-in-out both}
+.cake-scene.active .cake-wolf .wolf-leg-a{animation:leg-step .44s 1.7s 5 alternate both}.cake-scene.active .cake-wolf .wolf-leg-b{animation:leg-step .44s 1.92s 5 alternate both}
+.cake-scene.active .cake-wolf .wolf-arm-a,.cake-scene.active .cake-wolf .wolf-arm-b{animation:arm-step .46s 1.7s 5 alternate both}
+.cake-scene.active .cake-wolf .wolf-tail{animation:wolf-tail-wag .72s 1.7s 6 ease-in-out both}
+.cake-scene.active .cake-wolf-phrase{animation:speech-pop 3s 1.7s both}
+.cake-scene.active .cake-wolf .candy{animation:candy-drop 1.2s 3.05s ease-out both}.cake-scene.active .cake-wolf .candy-b{animation-delay:3.3s}.cake-scene.active .cake-wolf .candy-c{animation-delay:3.55s}
+.cake-scene.active .cake-buddy .arm-right{animation:reach-candy .8s 4.7s both}
+.cake-scene.active .cake-buddy .face-confused{animation:face-show .2s 4.35s both,face-away .2s 6.5s both}
+.cake-scene.active .cake-wolf .wolf-arm-b{animation:wolf-snatch .65s 6.05s both}
+.cake-scene.active .cake-wolf .wolf-bag{animation:bag-lift .55s 6.1s both}
+.cake-scene.active .cake-wolf .candy-a{animation:candy-snatch .62s 6.05s both}
+
+.flower-wolf{right:-14vw;bottom:1%;width:clamp(60px,6.6vw,90px)}
+.flower-candy-trail{left:auto;right:112%;bottom:12%;width:32px;height:22px}
+.flower-candy-trail .candy{left:9px;bottom:0;animation:none}
+.flower-scene.active .flower-candy-trail .candy{animation:lost-candy 1.6s 8.7s ease-out both}
+.flower-scene.active .flower-wolf{animation:flower-wolf-visit 3.4s 9.5s ease-in-out both}
+.flower-scene.active .flower-wolf .wolf-art{animation:walk-bounce .5s 9.7s 4 ease-in-out both}
+.flower-scene.active .flower-wolf .wolf-leg-a{animation:leg-step .48s 9.7s 4 alternate both}.flower-scene.active .flower-wolf .wolf-leg-b{animation:leg-step .48s 9.94s 4 alternate both}
+.flower-scene.active .flower-wolf .wolf-tail{animation:wolf-tail-wag .68s 10s 4 ease-in-out both}
+.flower-scene.active .flower-wolf .wolf-arm-a{animation:wolf-wave .55s 11.45s 2 alternate ease-in-out both}
+.flower-scene.active .flower-wolf .flower-candy-trail .candy{animation:lost-candy 1.6s 8.7s ease-out both,flower-candy-taken .55s 11.55s ease-in both}
+
+@keyframes beomgyu-copy{to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes frank-glance{0%,35%{transform:translateX(-3px)}100%{transform:translateX(2px)}}
+@keyframes beomgyu-jealous-walk{0%{right:6vw;opacity:0;transform:translateY(75%)}12%{right:6vw;opacity:1;transform:translateY(0)}28%,75%{right:6vw;opacity:1;transform:translateY(0)}100%{right:-14vw;opacity:0;transform:translateY(0)}}
+@keyframes jealous-fold-left{to{transform:rotate(58deg)}}@keyframes jealous-fold-right{to{transform:rotate(-58deg)}}
+@keyframes wolf-intro{0%{right:-12vw;opacity:0}12%{opacity:1}34%,69%{right:7vw;opacity:1}100%{right:-13vw;opacity:0}}
+@keyframes cake-wolf-visit{0%{left:-14vw;opacity:0}14%{opacity:1}34%,66%{left:35vw;opacity:1}100%{left:-15vw;opacity:0}}
+@keyframes cake-frank-candy{0%{right:-14vw;opacity:0}18%{right:53vw;opacity:1}70%{right:53vw;opacity:1}100%{right:-15vw;opacity:0}}
+@keyframes flower-wolf-visit{0%{right:-14vw;opacity:0}18%{right:8vw;opacity:1}60%{right:8vw;opacity:1}100%{right:-14vw;opacity:0}}
+@keyframes flower-candy-taken{from{opacity:1;transform:translate(0,0) rotate(54deg)}to{opacity:0;transform:translate(17px,-10px) rotate(150deg)}}
+@keyframes wolf-tail-wag{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(13deg)}}
+@keyframes candy-drop{0%{opacity:0;transform:translateY(-22px) rotate(-12deg)}35%{opacity:1;transform:translateY(0) rotate(18deg)}55%{transform:translateY(-8px) rotate(38deg)}75%{transform:translateY(0) rotate(52deg)}100%{opacity:1;transform:translateY(0) rotate(52deg)}}
+@keyframes reach-candy{0%,100%{transform:rotate(0)}48%,68%{transform:rotate(72deg)}}
+@keyframes wolf-snatch{0%,100%{transform:rotate(0)}35%,75%{transform:rotate(-46deg)}}
+@keyframes bag-lift{to{transform:translateY(-4px) rotate(-8deg)}}
+@keyframes candy-snatch{0%,35%{opacity:1;transform:translate(0,0) rotate(42deg)}100%{opacity:0;transform:translate(22px,-20px) rotate(160deg)}}
+@keyframes lost-candy{0%{opacity:0;transform:translateY(-34px) rotate(-14deg)}40%{opacity:1;transform:translateY(0) rotate(24deg)}60%{transform:translateY(-5px) rotate(38deg)}80%,100%{opacity:1;transform:translateY(0) rotate(54deg)}}
+@keyframes wolf-wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-48deg)}}
+@media(max-width:760px){
+  .beomgyu-scene .photo-frame{left:5%;top:8%;width:90%;height:72%}
+  .beomgyu-frame img{object-position:center 32%}
+  .beomgyu-caption{left:8%;right:auto;bottom:10%;width:78vw}.beomgyu-caption p{font-size:clamp(19px,5vw,24px);margin-bottom:6px}.beomgyu-caption strong{font-size:16px}
+  .beomgyu-buddy{right:-22vw;bottom:0;width:18vw}
+  @keyframes beomgyu-jealous-walk{0%{right:5vw;opacity:0;transform:translateY(75%)}12%{opacity:1;transform:translateY(0)}28%,75%{right:5vw;opacity:1;transform:translateY(0)}100%{right:-23vw;opacity:0;transform:translateY(0)}}
+  .beomgyu-bubble{right:0;bottom:78%;font-size:12px}
+  .wolf-anchor{width:clamp(70px,18vw,88px)}
+  .intro-wolf{right:-20vw;bottom:2%}.intro-wolf-phrase{right:calc(18vw + 84px);bottom:15%;max-width:50vw}
+  .cake-wolf{left:-21vw;bottom:2%;width:17vw}.cake-wolf-phrase{right:auto;left:0;bottom:82%;font-size:16px}
+  @keyframes cake-wolf-visit{0%{left:-21vw;opacity:0}14%{opacity:1}34%,66%{left:32vw;opacity:1}100%{left:-22vw;opacity:0}}
+  @keyframes cake-frank-candy{0%{right:-22vw;opacity:0}18%{right:31vw;opacity:1}70%{right:31vw;opacity:1}100%{right:-22vw;opacity:0}}
+  .flower-wolf{right:-20vw;bottom:1%;width:16vw}
+}
+@media(prefers-reduced-motion:reduce){
+  .wolf-anchor,.wolf-art,.wolf-art *,.wolf-phrase,.wolf-candy-trail,.candy,.beomgyu-caption,.beomgyu-buddy,.beomgyu-buddy *{animation:none!important;transition:none!important}
+  .beomgyu-caption,.beomgyu-caption p,.beomgyu-caption strong{opacity:1;transform:none;filter:none}.beomgyu-buddy{right:2vw;opacity:1}.beomgyu-buddy .face-neutral{opacity:0}.beomgyu-buddy .face-jealous{opacity:1}.beomgyu-buddy .arm-left{transform:rotate(58deg)}.beomgyu-buddy .arm-right{transform:rotate(-58deg)}.wolf-candy-trail .candy{opacity:1;transform:none}
+  .wolf-anchor{opacity:1}.intro-wolf{right:8vw}.cake-wolf{left:3vw}.flower-wolf{right:4vw}
+  .intro-wolf-phrase,.cake-wolf-phrase{opacity:1;visibility:visible;transform:none}
 }

@@ -116,6 +116,18 @@
     });
   }
 
+  function mountCharacterArtwork() {
+    const templates = {
+      frankenstein: document.getElementById('frankenstein-template'),
+      spider: document.getElementById('spider-template'),
+      wolf: document.getElementById('wolf-template')
+    };
+    document.querySelectorAll('[data-character]').forEach(anchor => {
+      const template = templates[anchor.dataset.character];
+      if (template) anchor.append(template.content.cloneNode(true));
+    });
+  }
+
   function stopClock() {
     if (clockHandle) window.clearTimeout(clockHandle);
     clockHandle = 0;
@@ -266,5 +278,6 @@
   });
 
   audio.addEventListener('error', () => showAudioGate('No se pudo cargar la pista local. Puedes seguir viendo la presentación.'));
+  mountCharacterArtwork();
   startPresentation();
 })();
