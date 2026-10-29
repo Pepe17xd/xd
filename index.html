@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a111d">
+  <meta name="description" content="Un pequeño cortometraje de cumpleaños para Maricielo.">
+  <title>Para Maricielo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="preload" as="image" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/BTS_at_the_White_House_on_May_31%2C_2022.jpg/1280px-BTS_at_the_White_House_on_May_31%2C_2022.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <div class="moon"></div><div class="mist mist-one"></div><div class="mist mist-two"></div>
+    <div class="backdrop-stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <svg class="bat bat-one" viewBox="0 0 80 32"><path d="M3 13 1 3l15 7 8-7 10 10 6-5 10 5 8-10 15 2-3 11-13 8-9-8-11 8-10-8-11 8Z"/></svg>
+    <svg class="bat bat-two" viewBox="0 0 80 32"><path d="M3 13 1 3l15 7 8-7 10 10 6-5 10 5 8-10 15 2-3 11-13 8-9-8-11 8-10-8-11 8Z"/></svg>
+    <div class="backdrop-grain"></div>
+  </div>
+
+  <main class="film" id="film" aria-live="off">
+    <section class="scene opening active" data-scene="0" data-duration="6900" aria-label="29 de octubre, hoy alguien cumple 19">
+      <div class="opening-copy">
+        <p class="handwritten opening-date">29 de octubre...</p>
+        <h1><span>Hoy alguien</span><br><em>cumple 19.</em></h1>
+        <p class="opening-dedication">y esta noche tenía que ser un poquito suya.</p>
+      </div>
+      <span class="night-note">una noche especial</span>
+    </section>
+
+    <section class="scene birthday" data-scene="1" data-duration="6600" aria-label="Feliz cumpleaños, Maricielo" aria-hidden="true" inert>
+      <div class="birthday-content">
+        <p class="handwritten">hoy celebramos a alguien increíble</p>
+        <h2>Feliz cumpleaños,<br><span class="name-wrap"><span class="heart-name">Maricielo</span><svg class="drawn-heart" viewBox="0 0 220 130" aria-hidden="true"><path d="M110 111C91 96 22 65 22 37 22 15 49 9 67 22c17 12 30 32 43 45 13-13 26-33 43-45 18-13 45-7 45 15 0 28-69 59-88 74Z"/></svg></span></h2>
+        <p class="birthday-note">qué suerte que el mundo te tenga.</p>
+      </div>
+    </section>
+
+    <section class="scene cake-scene" data-scene="2" data-duration="11200" aria-label="Pastel con velas en forma de 19" aria-hidden="true" inert>
+      <div class="cake-copy"><p class="handwritten">pide un deseo</p><h2>Diecinueve,<br><em>qué bonito suena.</em></h2><p class="birthday-age" id="birthday-age">19 añitos, Maricielo ♡</p></div>
+      <div class="cake-stage" aria-label="Pastel marfil con dos velas numéricas, 1 y 9">
+        <svg class="number-candles" id="number-candles" viewBox="0 0 360 300" role="img" aria-label="Velas encendidas con forma de 19">
+          <defs>
+            <linearGradient id="waxOne" x1="0" x2="1"><stop stop-color="#9d896e"/><stop offset=".2" stop-color="#fbf2df"/><stop offset=".72" stop-color="#e4d4b9"/><stop offset="1" stop-color="#82715e"/></linearGradient>
+            <linearGradient id="waxNine" x1="0" x2="1"><stop stop-color="#796c63"/><stop offset=".25" stop-color="#f5e9d3"/><stop offset=".77" stop-color="#e4d3b5"/><stop offset="1" stop-color="#74675e"/></linearGradient>
+            <radialGradient id="flameFill"><stop stop-color="#fff4c9"/><stop offset=".55" stop-color="#ffc66e"/><stop offset="1" stop-color="#d97842"/></radialGradient>
+            <filter id="flameGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <g class="digit digit-one">
+            <text class="digit-shadow" x="90" y="210">1</text><text class="digit-wax wax-one" x="84" y="204">1</text>
+            <path class="digit-glint" d="M103 78v108"/>
+            <path class="wick" d="M112 67v-8"/>
+            <g class="flame-group flame-one" filter="url(#flameGlow)"><path class="flame-shape" d="M112 58c-16-14 1-27 4-39 17 18 12 31-4 39Z"/><path class="flame-core" d="M114 53c-6-7 1-12 3-17 6 8 3 13-3 17Z"/></g>
+            <g class="smoke-puff smoke-one"><path d="M112 56c-11-10 8-13 0-24 14-8-2-14 4-22"/></g>
+          </g>
+          <g class="digit digit-nine">
+            <text class="digit-shadow" x="183" y="210">9</text><text class="digit-wax wax-nine" x="177" y="204">9</text>
+            <path class="digit-glint" d="M218 73c24 5 35 24 33 47"/>
+            <path class="wick" d="M234 67v-8"/>
+            <g class="flame-group flame-nine" filter="url(#flameGlow)"><path class="flame-shape" d="M234 58c-16-14 1-27 4-39 17 18 12 31-4 39Z"/><path class="flame-core" d="M236 53c-6-7 1-12 3-17 6 8 3 13-3 17Z"/></g>
+            <g class="smoke-puff smoke-nine"><path d="M234 56c-11-10 8-13 0-24 14-8-2-14 4-22"/></g>
+          </g>
+        </svg>
+        <div class="cake" aria-hidden="true">
+          <div class="cake-top"><i></i><i></i><i></i><i></i></div>
+          <div class="cake-upper"><span class="icing-drip"></span><span class="cake-bead bead-a"></span><span class="cake-bead bead-b"></span><span class="cake-bead bead-c"></span><span class="cake-bead bead-d"></span></div>
+          <div class="cake-lower"><span class="cake-ribbon"></span><span class="cake-flower flower-a">✧</span><span class="cake-flower flower-b">✦</span><span class="cake-flower flower-c">✧</span></div>
+          <div class="cake-plate"></div>
+        </div>
+        <p class="cake-wish">Que lo que sueñas encuentre su camino.</p>
+      </div>
+    </section>
+
+    <section class="scene photo-scene bts-scene" data-scene="3" data-duration="6600" aria-label="Una foto de BTS" aria-hidden="true" inert>
+      <div class="photo-frame bts-frame"><img id="bts-image" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/BTS_at_the_White_House_on_May_31%2C_2022.jpg/1280px-BTS_at_the_White_House_on_May_31%2C_2022.jpg" data-fallback="assets/images/bts.jpg" alt="BTS en la Casa Blanca, 2022" loading="lazy" decoding="async"><span class="photo-credit">The White House · Wikimedia Commons · Dominio público</span></div>
+      <div class="photo-caption"><p>Un poquito<br>de BTS <em>para ti.</em></p></div>
+    </section>
+
+    <section class="scene photo-scene funny-scene" data-scene="4" data-duration="6900" aria-label="Una foto espontánea de BTS" aria-hidden="true" inert>
+      <div class="photo-frame funny-frame"><img id="bts-funny-image" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Bangtan_Boys_during_a_photography_session%2C_May_2014_04.jpg/1280px-Bangtan_Boys_during_a_photography_session%2C_May_2014_04.jpg" data-fallback="assets/images/bts-funny.jpg" alt="BTS comparte un momento espontáneo durante una sesión fotográfica en 2014" loading="lazy" decoding="async"><span class="photo-credit">Bangtan Blog · vía Wikimedia Commons · CC BY 4.0</span></div>
+      <div class="funny-note"><span class="handwritten">con mucho cariño, obviamente</span><p>Tus gustos raros XDDDD</p></div>
+    </section>
+
+    <section class="scene photo-scene txt-scene" data-scene="5" data-duration="6600" aria-label="Una foto de TXT" aria-hidden="true" inert>
+      <div class="photo-frame txt-frame"><img id="txt-image" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Tomorrow_X_Together_at_a_Dior_event_in_2025_02.jpg/1280px-Tomorrow_X_Together_at_a_Dior_event_in_2025_02.jpg" data-fallback="assets/images/txt.jpg" alt="TOMORROW X TOGETHER en un evento de Dior, 2025" loading="lazy" decoding="async"><span class="photo-credit">K-POPIT · Wikimedia Commons · CC BY 3.0</span></div>
+      <div class="photo-caption"><p>Y claro,<br>también <em>TXT.</em></p></div>
+    </section>
+
+    <section class="scene flower-scene" data-scene="6" data-duration="8100" aria-label="Un ramo de flores dibujado para Maricielo" aria-hidden="true" inert>
+      <div class="flower-copy"><p class="handwritten">un detalle pequeñito</p><h2>Unas florecitas<br><em>para ti, Maricielo.</em></h2></div>
+      <svg class="bouquet" viewBox="0 0 680 580" role="img" aria-label="Ramo de flores blancas y lavanda que se dibuja poco a poco">
+        <defs>
+          <linearGradient id="stemGreen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b2b397"/><stop offset="1" stop-color="#62776b"/></linearGradient>
+          <linearGradient id="ivoryPetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8e8"/><stop offset="1" stop-color="#d9d4c3"/></linearGradient>
+          <linearGradient id="lavenderPetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b3a4b7"/><stop offset="1" stop-color="#65566e"/></linearGradient>
+        </defs>
+        <g class="stem-drawing stem-left"><path d="M350 530C326 432 259 352 245 234"/><path class="leaf-path" d="M291 400c-45-43-74-33-79-30 9 29 37 47 79 30Zm-31-74c40-38 46-68 42-77-30 11-49 36-42 77Z"/></g>
+        <g class="stem-drawing stem-center"><path d="M354 530C354 408 362 310 360 170"/><path class="leaf-path" d="M355 412c-42-37-69-28-77-21 12 25 39 39 77 21Zm4-92c43-40 51-68 47-80-31 13-50 40-47 80Z"/></g>
+        <g class="stem-drawing stem-right"><path d="M360 530C394 431 444 350 453 238"/><path class="leaf-path" d="M405 405c41-40 74-34 82-28-8 27-39 45-82 28Zm31-87c-36-43-37-71-31-81 28 13 43 40 31 81Z"/></g>
+        <g class="blossom blossom-left" transform="translate(242 220)"><g class="petal-ring ivory-petals"><ellipse cy="-31" rx="13" ry="29"/><ellipse cy="-31" rx="13" ry="29" transform="rotate(72)"/><ellipse cy="-31" rx="13" ry="29" transform="rotate(144)"/><ellipse cy="-31" rx="13" ry="29" transform="rotate(216)"/><ellipse cy="-31" rx="13" ry="29" transform="rotate(288)"/></g><circle class="flower-center" r="12"/><circle class="center-light" r="4"/></g>
+        <g class="blossom blossom-center" transform="translate(359 154)"><g class="petal-ring cream-petals"><ellipse cy="-35" rx="14" ry="32"/><ellipse cy="-35" rx="14" ry="32" transform="rotate(60)"/><ellipse cy="-35" rx="14" ry="32" transform="rotate(120)"/><ellipse cy="-35" rx="14" ry="32" transform="rotate(180)"/><ellipse cy="-35" rx="14" ry="32" transform="rotate(240)"/><ellipse cy="-35" rx="14" ry="32" transform="rotate(300)"/></g><circle class="flower-center" r="13"/><circle class="center-light" r="4.5"/></g>
+        <g class="blossom blossom-right" transform="translate(456 222)"><g class="petal-ring lavender-petals"><ellipse cy="-29" rx="12" ry="27"/><ellipse cy="-29" rx="12" ry="27" transform="rotate(72)"/><ellipse cy="-29" rx="12" ry="27" transform="rotate(144)"/><ellipse cy="-29" rx="12" ry="27" transform="rotate(216)"/><ellipse cy="-29" rx="12" ry="27" transform="rotate(288)"/></g><circle class="flower-center" r="11"/><circle class="center-light" r="4"/></g>
+        <path class="bouquet-tie" d="M300 482c38 20 74 20 111 0m-55 1c-5 30-19 46-41 48m41-48c5 30 19 46 42 48"/>
+      </svg>
+    </section>
+
+    <section class="scene letter-scene" data-scene="7" data-duration="23500" aria-label="Carta de cumpleaños para Maricielo" aria-hidden="true" inert>
+      <div class="letter-paper">
+        <p class="letter-salutation handwritten">Maricielo,</p>
+        <div class="letter-body">
+          <p>Bueno, hoy cumples 19 XDDD. Aunque estemos lejos, quería hacerte algo diferente para tu cumpleaños.</p>
+          <p>Espero que disfrutes muchísimo tu día, que te rías bastante y que este nuevo año te traiga cosas muy bonitas.</p>
+          <p>Y sí, tenía que poner BTS y TXT porque sabía que no podían faltar JAJAJA.</p>
+          <p>Cuídate mucho, disfruta tus 19 y nunca dejes de ser tú.</p>
+        </div>
+        <p class="letter-sign handwritten">Con cariño,</p>
+        <p class="bot-signature handwritten">BOT</p>
+      </div>
+    </section>
+
+    <section class="scene ending" data-scene="8" aria-label="Feliz cumpleaños BOT" aria-hidden="true" inert>
+      <div class="ending-moon" aria-hidden="true"></div>
+      <div class="ending-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <h2>Feliz cumpleaños BOT</h2>
+    </section>
+  </main>
+
+  <div class="audio-gate" id="audio-gate" hidden>
+    <p id="audio-message">El navegador bloqueó el inicio automático del audio.</p>
+    <button id="audio-enable" type="button">Activar audio ♫</button>
+  </div>
+  <audio id="birthday-audio" preload="auto" loop></audio>
+  <script src="music-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
